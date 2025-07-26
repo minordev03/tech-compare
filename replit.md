@@ -37,73 +37,68 @@ Tech-Compare is a product comparison website built with PHP and MySQL, designed 
 ## Key Components
 
 ### Core Data Models
-- **Comparison Schema**: Product/service comparison data with items, specifications, and metadata
-- **Category Schema**: Hierarchical categorization system
-- **Search Results**: Structured search response format
+- **MySQL Database Schema**: Optimized tables for comparisons, categories, items, and features
+- **JSON Content Format**: Standardized structure for AI-generated comparison imports
+- **Admin Token System**: Secure authentication for content management API
 
-### Frontend Components
-- **Layout Components**: Header with search, Footer with navigation
-- **Comparison Components**: ComparisonCard, ComparisonTable for data display
-- **Ad Integration**: AdZone component for Google AdSense placement
-- **UI Components**: Comprehensive Shadcn/ui component library
+### Page Components
+- **Homepage**: Featured comparisons and category navigation
+- **Comparison Pages**: Dynamic and static comparison displays with SEO optimization
+- **Category Pages**: Filtered listings by product/service category
+- **Admin API**: Secure endpoints for automated content import and site updates
 
-### Backend Services
-- **Storage Interface**: Abstract storage layer with in-memory implementation
-- **Route Handlers**: Express routes for comparisons, categories, and search
-- **Development Tools**: Vite integration for hot reloading in development
+### Template System
+- **Static HTML Generation**: Template-based page creation for performance
+- **Dynamic Fallback**: PHP-powered pages when static files unavailable
+- **SEO Optimization**: Meta tags, structured data, and clean URLs
 
 ## Data Flow
 
-### Request Flow
-1. Client makes API requests to Express server endpoints
-2. Server routes requests to appropriate handlers
-3. Handlers interact with storage layer (currently in-memory)
-4. Responses formatted as JSON and returned to client
-5. TanStack Query manages caching and state updates
+### Content Import Process
+1. AI generates JSON content using specified format
+2. Content validated against schema requirements
+3. Admin API processes import with token authentication
+4. Database entries created for comparison data
+5. Static HTML pages generated from templates
+6. Robots.txt and sitemap.xml automatically updated
 
-### Page Generation
-- Static pages generated from JSON templates (planned feature)
-- Dynamic routing for comparison and category pages
-- Server-side rendering capabilities through Vite SSR
+### Page Serving
+- Static HTML served directly for best performance
+- Dynamic PHP fallback for real-time updates
+- Apache mod_rewrite handles clean URL routing
+- Google AdSense zones integrated throughout
 
-## External Dependencies
+## Technology Stack
 
-### UI and Styling
-- Radix UI primitives for accessible components
-- Tailwind CSS for utility-first styling
-- Lucide React for consistent iconography
-- FontAwesome classes referenced for icons
+### Core Technologies
+- **Backend**: PHP 8.2+ with PDO for database operations
+- **Database**: MySQL 8.0+ with JSON column support
+- **Web Server**: Apache with mod_rewrite for clean URLs
+- **Frontend**: Custom CSS with vanilla JavaScript
 
-### Development Tools
-- Replit-specific plugins for development environment
-- TypeScript for type safety across the stack
-- ESBuild for production bundling
-
-### Database and ORM
-- Drizzle ORM with Zod schema validation
-- PostgreSQL database (configured for Neon)
-- Connection pooling and serverless optimization
+### External Dependencies
+- **FontAwesome**: Icon library for UI elements
+- **Google AdSense**: Advertising integration
+- **JSON-LD**: Structured data for search engines
 
 ## Deployment Strategy
 
-### Build Process
-- Frontend: Vite builds React app to `dist/public`
-- Backend: ESBuild bundles server code to `dist/index.js`
-- Assets: Static files served from build directory
+### Production Setup
+- **PHP Environment**: PHP 8.2+ with MySQL PDO extensions
+- **Database**: MySQL 8.0+ server with created schema
+- **Web Server**: Apache with mod_rewrite enabled
+- **Security**: HTTPS redirection and security headers configured
 
-### Environment Configuration
-- Development: Vite dev server with Express API
-- Production: Node.js server serving static files and API
-- Database: Environment variable for connection string
+### File Structure
+- **Static Pages**: Generated in `/static/comparison/` directory
+- **Templates**: HTML templates in `/templates/` directory
+- **Assets**: CSS and JavaScript in `/assets/` directory
+- **API**: Admin endpoints in `/api/admin/` directory
 
-### Containerization Ready
-- ES modules throughout the application
-- Clean separation between client and server code
-- Environment-based configuration for different deployment targets
-
-### Key Features
-- Responsive design for mobile and desktop
-- SEO-ready with metadata management
-- Ad placement zones for monetization
-- Search functionality across all content
-- Category-based navigation and filtering
+### Current Status
+- ✅ Complete PHP-based architecture implemented
+- ✅ Database schema created with sample categories
+- ✅ Admin API with secure token authentication
+- ✅ Static page generation system functional
+- ✅ Responsive design with ad integration
+- ⚠️ Ready for database setup and content import
