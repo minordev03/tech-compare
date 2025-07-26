@@ -1,0 +1,37 @@
+I am developing a website called “Tech-Compare.” The primary purpose of this web application is to provide users with side-by-side comparisons of a wide range of products and services, including software applications, electronic devices, and household appliances. The platform aims to deliver quick, comprehensive, and user-friendly comparisons, enabling visitors to make informed choices. The site will be monetized through Google AdSense integration.
+Main Components of the Application
+1.	Main Web Application
+•	This will be built using PHP with MySQL as the backend database. The application should be containerized using Docker for easy deployment and scalability. Static files (HTML pages, images, stylesheets, etc.) will be generated on a separate machine and then copied to a server volume mounted to the Docker image.
+•	Design and Branding:
+•	A distinctive and modern logo is required, along with a favicon. Both should reflect the site's focus on technology and comparison.
+•	Use Alinta Energy web application style design. No need for the login page.
+•	Page Layout:
+o	Header: Must include a global search function that indexes all published comparison pages (both dynamic and static). Search results should allow users to quickly navigate to the most relevant content.
+o	Footer: To contain links to the "About Us" page, social media (including a Twitter/X follow button), and copyright information.
+•	Robots.txt Management:
+o	The robots.txt file should be dynamically updated to include links to all comparison pages, both dynamic and static, to ensure proper SEO and site crawling.
+2.	Static Page Generation Component
+•	Static HTML pages will be generated using a constant template. Content will be populated programmatically from JSON files (see below for format).
+•	Static pages should incorporate the site's header and footer to maintain consistent navigation and branding.
+•	Each page must include well-placed Google AdSense ad placeholders on both sides of the content. These ad spaces should float alongside the main content and remain visible as the user scrolls.
+•	Pages should also feature relevant images and embedded YouTube videos, with a visible disclaimer stating that all images are copyrighted by their respective vendors and sources.
+•	AI-Generated Content & JSON Specification
+o	Content for each comparison page will be provided in a structured JSON format to ensure consistency and enable automated static page generation. The JSON object for each comparison must include the following elements:
+o	Title: The primary title for the comparison, clearly naming the products/items being compared.
+o	Category: A hierarchical category path, e.g., "Consumer Electronics > Home Appliances > Dishwashers."
+o	Introduction: A brief overview of the comparison topic and its relevance.
+o	Descriptions: Detailed write-ups about each item being compared, highlighting their unique features, pros, and cons.
+o	Comparison Table: A clear, structured table summarizing the key specifications, features, and differences for all items.
+o	Media: URLs to relevant images and YouTube videos, where available.
+o	SEO Metadata: Keywords, meta descriptions, and other SEO-relevant tags tailored for each comparison.
+o	Disclaimer: Standard disclaimer text regarding the ownership of product images and third-party content.
+o	AI Prompt Requirement:
+o	Develop a robust and adaptable prompt for your AI content generator that can accept a list of products/services and output the complete JSON structure as described above. The prompt should instruct the AI to research each item, write detailed, unbiased overviews, identify distinguishing features, and populate the comparison table with accurate, up-to-date specifications. The AI should also generate SEO-optimized metadata and retrieve media links where possible.
+3.	Administrative API
+•	Implement a secure admin API, protected by a long, randomly-generated token, to allow for the automated updating of the robots.txt file and the homepage with links to all published comparison pages. This API will help keep site navigation and SEO elements current as new pages are generated and deployed.
+Additional Clarifications and Requirements
+•	Ensure that all pages are responsive and mobile-friendly, with fast load times to maximise user engagement and ad performance.
+•	Accessibility standards (e.g., WCAG) should be followed for all core site components.
+•	Static and dynamic pages should share a uniform look and feel, with consistent navigation, branding, and ad placement.
+•	Implement automated sitemap generation, in addition to robots.txt, to support search engine indexing.
+•	Provide clear documentation for the workflow: from content and media selection, through JSON preparation, static page generation, deployment, and site update automation.
