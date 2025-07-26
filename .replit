@@ -1,15 +1,19 @@
-modules = ["nodejs-20", "web", "postgresql-16"]
+modules = ["nodejs-20", "web", "postgresql-16", "php"]
 run = "npm run dev"
 hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
 
 [nix]
 channel = "stable-24_05"
-packages = ["php82", "php82Extensions.pdo", "php82Extensions.pdo_mysql", "mysql80"]
+packages = ["php82", "php82Extensions.pdo", "php82Extensions.pdo_mysql", "mysql80", "php82Extensions.pdo_pgsql"]
 
 [deployment]
 deploymentTarget = "autoscale"
 build = ["npm", "run", "build"]
 run = ["npm", "run", "start"]
+
+[[ports]]
+localPort = 3000
+externalPort = 3000
 
 [[ports]]
 localPort = 5000

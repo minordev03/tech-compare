@@ -7,17 +7,27 @@ Tech-Compare is a product comparison website built with PHP and MySQL, designed 
 ## User Preferences
 
 - Preferred communication style: Simple, everyday language
-- Technology stack: PHP with MySQL (not React/Node.js)
+- Technology stack: PHP with PostgreSQL (migrated from MySQL)
 - Content management: AI-generated JSON format with admin API
 - Page generation: Static HTML pages with dynamic fallback
 - SEO focus: Automated robots.txt and sitemap management
 
+## Recent Changes (July 26, 2025)
+
+✓ Fixed PHP application startup issues
+✓ Migrated database from MySQL to PostgreSQL
+✓ Created PostgreSQL schema with all required tables
+✓ Set up PHP development server on port 3000
+✓ Added sample comparison data for testing
+✓ Configured Node.js wrapper for workflow compatibility
+✓ Application now fully functional with homepage and comparison pages working
+
 ## System Architecture
 
 ### Backend Architecture
-- **Language**: PHP 8+ with MySQL database
-- **Web Server**: Apache with mod_rewrite for clean URLs
-- **Database**: MySQL with optimized schema for comparison data
+- **Language**: PHP 8.2+ with PostgreSQL database (migrated from MySQL)
+- **Web Server**: PHP development server on port 3000 (Replit environment)
+- **Database**: PostgreSQL with JSON/JSONB support for comparison data
 - **API Design**: RESTful admin endpoints with token authentication
 - **Content Management**: JSON-based import system with validation
 
