@@ -1,37 +1,38 @@
-# Tech-Compare Replit Project
+# Tech-Compare PHP Project
 
 ## Overview
 
-Tech-Compare is a modern web application for product and service comparisons, built with a full-stack TypeScript architecture. The application provides side-by-side comparisons across categories like software, electronics, and home appliances, featuring a clean, modern interface with integrated advertising support.
+Tech-Compare is a product comparison website built with PHP and MySQL, designed to provide comprehensive side-by-side comparisons of products and services. The system features automated content management through AI-generated JSON imports, static page generation for SEO optimization, and Google AdSense integration for monetization.
 
 ## User Preferences
 
-Preferred communication style: Simple, everyday language.
+- Preferred communication style: Simple, everyday language
+- Technology stack: PHP with MySQL (not React/Node.js)
+- Content management: AI-generated JSON format with admin API
+- Page generation: Static HTML pages with dynamic fallback
+- SEO focus: Automated robots.txt and sitemap management
 
 ## System Architecture
 
-### Frontend Architecture
-- **Framework**: React 18 with TypeScript
-- **Build Tool**: Vite for fast development and optimized builds
-- **Routing**: Wouter for lightweight client-side routing
-- **State Management**: TanStack Query for server state management
-- **UI Library**: Shadcn/ui components built on Radix UI primitives
-- **Styling**: Tailwind CSS with custom CSS variables for theming
-- **Design System**: Modern, clean interface with blue accent colors
-
 ### Backend Architecture
-- **Runtime**: Node.js with Express.js
-- **Language**: TypeScript with ES modules
-- **Database**: PostgreSQL with Drizzle ORM
-- **Database Provider**: Neon Database (@neondatabase/serverless)
-- **API Design**: RESTful endpoints with JSON responses
-- **Middleware**: Express middleware for logging, JSON parsing, and error handling
+- **Language**: PHP 8+ with MySQL database
+- **Web Server**: Apache with mod_rewrite for clean URLs
+- **Database**: MySQL with optimized schema for comparison data
+- **API Design**: RESTful admin endpoints with token authentication
+- **Content Management**: JSON-based import system with validation
 
-### Data Storage Solutions
-- **ORM**: Drizzle ORM for type-safe database operations
-- **Schema Location**: Shared schema definitions in `/shared/schema.ts`
-- **Migration Management**: Drizzle Kit for database migrations
-- **Database Configuration**: PostgreSQL dialect with environment-based connection
+### Frontend Architecture
+- **Styling**: Custom CSS with modern design principles
+- **JavaScript**: Vanilla JS for interactive features
+- **Responsive Design**: Mobile-first approach with flexible layouts
+- **Ad Integration**: Google AdSense zones with strategic placement
+- **SEO Optimization**: Meta tags, structured data, and semantic HTML
+
+### Static Page Generation
+- **Template System**: HTML templates with placeholder replacement
+- **Generator**: PHP-based static page creation from database content
+- **File Management**: Automatic static file serving with dynamic fallback
+- **Performance**: Cached static pages for faster load times
 
 ## Key Components
 

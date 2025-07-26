@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{META_TITLE}}</title>
+    <meta name="description" content="{{META_DESCRIPTION}}">
+    <meta name="keywords" content="{{KEYWORDS}}">
+    
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="{{META_TITLE}}">
+    <meta property="og:description" content="{{META_DESCRIPTION}}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{CANONICAL_URL}}">
+    {{#FEATURED_IMAGE}}<meta property="og:image" content="{{FEATURED_IMAGE}}">{{/FEATURED_IMAGE}}
+    
+    <link rel="canonical" href="{{CANONICAL_URL}}">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "{{TITLE}}",
+        "description": "{{META_DESCRIPTION}}",
+        "url": "{{CANONICAL_URL}}",
+        "datePublished": "{{DATE_PUBLISHED}}",
+        "dateModified": "{{DATE_MODIFIED}}",
+        "author": {
+            "@type": "Organization",
+            "name": "Tech-Compare"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Tech-Compare",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{{SITE_URL}}/assets/images/logo.png"
+            }
+        }{{#FEATURED_IMAGE}},
+        "image": "{{FEATURED_IMAGE}}"{{/FEATURED_IMAGE}}
+    }
+    </script>
+</head>
+<body>
+    {{HEADER_INCLUDE}}
+    
+    <main class="main-content comparison-page">
+        <div class="container">
+            <div class="content-grid">
+                <!-- Left Ad Zone -->
+                <aside class="ad-sidebar">
+                    <div class="ad-zone sticky-ad" data-size="300x600">
+                        <!-- Google AdSense Code Here -->
+                        <div class="ad-placeholder">
+                            <i class="fas fa-ad"></i>
+                            <p>Google AdSense<br>300x600</p>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <div class="main-column">
+                    <article class="comparison-article">
+                        <!-- Breadcrumb Navigation -->
+                        <nav class="breadcrumb">
+                            <a href="/">Home</a>
+                            {{#BREADCRUMB_ITEMS}}
+                            <span class="separator">&gt;</span>
+                            <a href="{{URL}}">{{NAME}}</a>
+                            {{/BREADCRUMB_ITEMS}}
+                            <span class="separator">&gt;</span>
+                            <span class="current">{{TITLE}}</span>
+                        </nav>
+
+                        <!-- Article Header -->
+                        <header class="article-header">
+                            <h1>{{TITLE}}</h1>
+                            <p class="article-intro">{{INTRODUCTION}}</p>
+                            <div class="article-meta">
+                                <span class="updated-date">Updated {{UPDATED_DATE}}</span>
+                                <span class="category-badge">{{CATEGORY_NAME}}</span>
+                            </div>
+                        </header>
+
+                        <!-- Comparison Table -->
+                        <section class="comparison-section">
+                            <div class="comparison-table-wrapper">
+                                <h2>Detailed Specifications</h2>
+                                <div class="table-responsive">
+                                    <table class="comparison-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="feature-column">Feature</th>
+                                                {{#ITEMS}}
+                                                <th class="item-column">{{NAME}}</th>
+                                                {{/ITEMS}}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#COMPARISON_ROWS}}
+                                            <tr>
+                                                <td class="feature-name">{{FEATURE}}</td>
+                                                {{#VALUES}}
+                                                <td class="feature-value">{{VALUE}}</td>
+                                                {{/VALUES}}
+                                            </tr>
+                                            {{/COMPARISON_ROWS}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Product Images -->
+                        {{#HAS_IMAGES}}
+                        <section class="product-images">
+                            <h2>Product Gallery</h2>
+                            <div class="image-grid">
+                                {{#ITEMS}}
+                                {{#IMAGE}}
+                                <div class="product-image">
+                                    <h3>{{NAME}}</h3>
+                                    <img src="{{IMAGE}}" alt="{{NAME}}" loading="lazy">
+                                </div>
+                                {{/IMAGE}}
+                                {{/ITEMS}}
+                            </div>
+                        </section>
+                        {{/HAS_IMAGES}}
+
+                        <!-- Product Descriptions -->
+                        <section class="product-descriptions">
+                            <h2>Detailed Overview</h2>
+                            <div class="descriptions-grid">
+                                {{#ITEMS}}
+                                <div class="product-description">
+                                    <h3>{{NAME}}</h3>
+                                    <p>{{DESCRIPTION}}</p>
+                                    {{#SPECIFICATIONS}}
+                                    <ul class="spec-list">
+                                        {{#SPECS}}
+                                        <li><strong>{{KEY}}:</strong> {{VALUE}}</li>
+                                        {{/SPECS}}
+                                    </ul>
+                                    {{/SPECIFICATIONS}}
+                                </div>
+                                {{/ITEMS}}
+                            </div>
+                        </section>
+
+                        <!-- YouTube Videos -->
+                        {{#HAS_VIDEOS}}
+                        <section class="video-section">
+                            <h2>Video Reviews</h2>
+                            <div class="video-grid">
+                                {{#VIDEOS}}
+                                <div class="video-wrapper">
+                                    <iframe src="{{URL}}" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                                {{/VIDEOS}}
+                            </div>
+                        </section>
+                        {{/HAS_VIDEOS}}
+
+                        <!-- Disclaimer -->
+                        {{#DISCLAIMER}}
+                        <div class="disclaimer">
+                            <div class="disclaimer-content">
+                                <i class="fas fa-info-circle"></i>
+                                <div>
+                                    <strong>Disclaimer:</strong> {{DISCLAIMER}}
+                                </div>
+                            </div>
+                        </div>
+                        {{/DISCLAIMER}}
+
+                        <!-- Related Comparisons -->
+                        {{#HAS_RELATED}}
+                        <section class="related-comparisons">
+                            <h2>Related Comparisons</h2>
+                            <div class="related-grid">
+                                {{#RELATED_COMPARISONS}}
+                                <a href="/comparison/{{SLUG}}" class="related-card">
+                                    <h4>{{TITLE}}</h4>
+                                    <p>{{CATEGORY}}</p>
+                                </a>
+                                {{/RELATED_COMPARISONS}}
+                            </div>
+                        </section>
+                        {{/HAS_RELATED}}
+                    </article>
+                </div>
+
+                <!-- Right Ad Zone -->
+                <aside class="ad-sidebar">
+                    <div class="ad-zone sticky-ad" data-size="300x600">
+                        <!-- Google AdSense Code Here -->
+                        <div class="ad-placeholder">
+                            <i class="fas fa-ad"></i>
+                            <p>Google AdSense<br>300x600</p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Ad Banner -->
+    <div class="mobile-ad-banner">
+        <div class="ad-zone" data-size="320x50">
+            <!-- Google AdSense Code Here -->
+            <div class="ad-placeholder">
+                <i class="fas fa-ad"></i>
+                <p>Google AdSense 320x50</p>
+                <button class="ad-close"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+    </div>
+
+    {{FOOTER_INCLUDE}}
+    
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>
