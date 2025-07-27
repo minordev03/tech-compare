@@ -1,13 +1,14 @@
 <?php
 // Database configuration
-$host = $_ENV['PGHOST'] ?? 'localhost';
-$dbname = $_ENV['PGDATABASE'] ?? 'tech_compare';
-$username = $_ENV['PGUSER'] ?? 'postgres';
-$password = $_ENV['PGPASSWORD'] ?? '';
-$port = $_ENV['PGPORT'] ?? '5432';
+$host = $_ENV['DB_HOST'] ?? 'localhost';
+$dbname = $_ENV['DB_DATABASE'] ?? 'tech_compare';
+$username = $_ENV['DB_USERNAME'] ?? 'user';
+$password = $_ENV['DB_PASSWORD'] ?? '';
+$port = $_ENV['DB_PORT'] ?? '3306';
 
 try {
-    $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $username, $password);
+    $dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4";
+    $pdo = new PDO($dsn, $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 } catch (PDOException $e) {

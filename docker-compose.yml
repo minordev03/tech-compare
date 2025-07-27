@@ -8,6 +8,13 @@ services:
       - ./src:/var/www/html
     networks:
       - app-network
+    env_file:
+      - .env
+    command: >
+      sh -c "apt-get update &&
+             apt-get install -y default-mysql-client &&
+             docker-php-ext-install pdo pdo_mysql &&
+             php-fpm"
 
   nginx:
     image: nginx:latest
@@ -20,19 +27,20 @@ services:
     networks:
       - app-network
 
-  postgres:
-    image: postgres:latest
-    container_name: postgres-container
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
     environment:
-      POSTGRES_DB: tech_compare
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      MYSQL_DATABASE: tech_compare
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpassword
     ports:
-      - "5432:5432"
+      - "3306:3306"
     networks:
       - app-network
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - ./src/config/database_schema.sql:/docker-entrypoint-initdb.d/database_schema.sql
 
 volumes:
   pgdata:

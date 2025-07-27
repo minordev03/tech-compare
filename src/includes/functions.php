@@ -27,27 +27,27 @@ function getCategories($pdo) {
 }
 
 function getFeaturedComparisons($pdo, $limit = 6) {
-    $stmt = $pdo->prepare("
+    $limit = (int)$limit;
+    $stmt = $pdo->query("
         SELECT c.*, cat.name as category_name 
         FROM comparisons c 
         JOIN categories cat ON c.category_id = cat.id 
         WHERE c.featured = TRUE 
         ORDER BY c.updated_at DESC 
-        LIMIT ?
+        LIMIT $limit
     ");
-    $stmt->execute([$limit]);
     return $stmt->fetchAll();
 }
 
 function getRecentComparisons($pdo, $limit = 5) {
-    $stmt = $pdo->prepare("
+    $limit = (int)$limit;
+    $stmt = $pdo->query("
         SELECT c.*, cat.name as category_name 
         FROM comparisons c 
         JOIN categories cat ON c.category_id = cat.id 
         ORDER BY c.updated_at DESC 
-        LIMIT ?
+        LIMIT $limit
     ");
-    $stmt->execute([$limit]);
     return $stmt->fetchAll();
 }
 
@@ -100,16 +100,15 @@ function getComparisonsByCategory($pdo, $categorySlug, $limit = null) {
         WHERE cat.slug = ? 
         ORDER BY c.updated_at DESC
     ";
-    
     if ($limit) {
-        $sql .= " LIMIT ?";
+        $limit = (int)$limit;
+        $sql .= " LIMIT $limit";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$categorySlug, $limit]);
+        $stmt->execute([$categorySlug]);
     } else {
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$categorySlug]);
     }
-    
     return $stmt->fetchAll();
 }
 
@@ -121,6 +120,7 @@ function getCategoryBySlug($pdo, $slug) {
 
 function searchComparisons($pdo, $query, $limit = 20) {
     $searchTerm = '%' . $query . '%';
+    $limit = (int)$limit;
     $stmt = $pdo->prepare("
         SELECT c.*, cat.name as category_name,
                CASE 
@@ -136,12 +136,11 @@ function searchComparisons($pdo, $query, $limit = 20) {
            OR c.introduction LIKE ?
            OR c.category_path LIKE ?
         ORDER BY relevance DESC, c.updated_at DESC
-        LIMIT ?
+        LIMIT $limit
     ");
     $stmt->execute([
         $searchTerm, $searchTerm, $searchTerm, // for relevance calculation
-        $searchTerm, $searchTerm, $searchTerm, $searchTerm, // for WHERE clause
-        $limit
+        $searchTerm, $searchTerm, $searchTerm, $searchTerm // for WHERE clause
     ]);
     return $stmt->fetchAll();
 }
