@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  web:
+    image: php:8.2-fpm
+    container_name: php-container
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-container
+    volumes:
+      - ./src:/var/www/html
+      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8080:80"
+    networks:
+      - app-network
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres-container
+    environment:
+      POSTGRES_DB: tech_compare
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+
+networks:
+  app-network:
+    driver: bridge
